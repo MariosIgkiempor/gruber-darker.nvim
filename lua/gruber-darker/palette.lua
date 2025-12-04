@@ -24,7 +24,7 @@ M = {
 	quartz = Color.new(0x95a99f),
 	["niagara-2"] = Color.new(0x303540),
 	["niagara-1"] = Color.new(0x565f73),
-	niagara = Color.new(0x96a6c8),
+	niagara = Color.new(0xf4f4ff),
 	wisteria = Color.new(0x9e95c7),
 }
 
