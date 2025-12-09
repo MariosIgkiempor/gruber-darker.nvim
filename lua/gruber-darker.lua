@@ -70,6 +70,10 @@ function M.load()
 
 	vim.opt.termguicolors = true
 	vim.g.colors_name = "gruber-darker"
+	
+	-- Debug: print what variant we're using at load time
+	local opts = require("gruber-darker.config").get_opts()
+	print("Loading gruber-darker with variant:", opts.variant, "background:", vim.o.background)
 
 	highlights.setup()
 
