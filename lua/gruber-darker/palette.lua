@@ -78,8 +78,15 @@ local function load_palette()
 	end
 end
 
--- Load the initial palette
-load_palette()
+local palette_loaded = false
+
+-- Function to ensure palette is loaded
+local function ensure_palette_loaded()
+	if not palette_loaded then
+		load_palette()
+		palette_loaded = true
+	end
+end
 
 -- Function to reload palette when variant changes
 function M.reload()
@@ -90,6 +97,13 @@ function M.reload()
 		end
 	end
 	load_palette()
+	palette_loaded = true
 end
 
-return M
+-- Use metatable to load palette lazily when colors are accessed
+return setmetatable(M, {
+	__index = function(t, key)
+		ensure_palette_loaded()
+		return rawget(t, key)
+	end
+})
