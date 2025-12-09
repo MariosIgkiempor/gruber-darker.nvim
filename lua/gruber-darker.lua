@@ -46,41 +46,15 @@ local function create_autocmds()
 	-- Auto-reload theme when background changes
 	vim.api.nvim_create_autocmd("OptionSet", {
 		group = gruber_darker_group,
-		pattern = "*",
-		callback = function(event)
-			if event.match == "background" then
-				print("OptionSet background triggered! background =", vim.o.background)
-				if vim.g.colors_name == "gruber-darker" then
-					-- Simply reload the highlights - config will auto-detect variant
-					local palette = require("gruber-darker.palette")
-					palette.reload()
-					local highlights = require("gruber-darker.highlights")
-					highlights.setup()
-					print("Theme reloaded for variant:", require("gruber-darker.config").get_opts().variant)
-				end
-			end
-		end,
-	})
-	
-	-- Also try listening for when options change via API
-	vim.api.nvim_create_autocmd("VimEnter", {
-		group = gruber_darker_group,
+		pattern = "background",
 		callback = function()
-			local last_bg = vim.o.background
-			local timer = vim.uv.new_timer()
-			timer:start(1000, 1000, vim.schedule_wrap(function()
-				if vim.o.background ~= last_bg then
-					print("Background changed via timer check:", last_bg, "->", vim.o.background)
-					last_bg = vim.o.background
-					if vim.g.colors_name == "gruber-darker" then
-						local palette = require("gruber-darker.palette")
-						palette.reload()
-						local highlights = require("gruber-darker.highlights")
-						highlights.setup()
-						print("Theme reloaded via timer for variant:", require("gruber-darker.config").get_opts().variant)
-					end
-				end
-			end))
+			if vim.g.colors_name == "gruber-darker" then
+				-- Reload the highlights - config will auto-detect variant
+				local palette = require("gruber-darker.palette")
+				palette.reload()
+				local highlights = require("gruber-darker.highlights")
+				highlights.setup()
+			end
 		end,
 	})
 	

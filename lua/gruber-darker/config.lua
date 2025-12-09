@@ -42,6 +42,7 @@ local DEFAULTS = {
 
 ---@class ConfigMgr
 ---@field private resolved_opts GruberDarkerOpts
+---@field private auto_detect_variant boolean
 local ConfigMgr = {}
 ConfigMgr.__index = ConfigMgr
 
@@ -54,8 +55,8 @@ local instance = nil
 function ConfigMgr.get_opts()
 	if instance ~= nil then
 		local opts = vim.deepcopy(instance.resolved_opts)
-		-- Always auto-detect variant if it was set to nil
-		if opts.variant == nil then
+		-- Always auto-detect variant if it was originally set to auto-detect
+		if instance.auto_detect_variant then
 			opts.variant = vim.o.background == "light" and "light" or "dark"
 		end
 		return opts
@@ -74,6 +75,9 @@ end
 function ConfigMgr.setup(opts)
 	local final_opts = vim.tbl_deep_extend("force", DEFAULTS, opts or {})
 	
+	-- Check if we should auto-detect variant
+	local should_auto_detect = final_opts.variant == nil
+	
 	-- Auto-detect variant based on vim.o.background if variant is nil
 	if final_opts.variant == nil then
 		final_opts.variant = vim.o.background == "light" and "light" or "dark"
@@ -82,6 +86,7 @@ function ConfigMgr.setup(opts)
 	-- Allow reconfiguration by resetting instance
 	instance = setmetatable({
 		resolved_opts = final_opts,
+		auto_detect_variant = should_auto_detect,
 	}, ConfigMgr)
 end
 
