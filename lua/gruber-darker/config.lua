@@ -24,7 +24,7 @@
 ---@type GruberDarkerOpts
 local DEFAULTS = {
 	bold = true,
-	variant = "dark",
+	variant = nil, -- Will be auto-detected from vim.o.background
 	invert = {
 		signs = false,
 		tabline = false,
@@ -64,8 +64,8 @@ end
 function ConfigMgr.setup(opts)
 	local final_opts = vim.tbl_deep_extend("force", DEFAULTS, opts or {})
 	
-	-- Auto-detect variant based on vim.o.background if not explicitly set
-	if not opts or not opts.variant then
+	-- Auto-detect variant based on vim.o.background if variant is nil
+	if final_opts.variant == nil then
 		final_opts.variant = vim.o.background == "light" and "light" or "dark"
 	end
 	

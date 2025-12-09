@@ -69,7 +69,7 @@ local function create_autocmds()
 	vim.api.nvim_create_autocmd("VimEnter", {
 		group = gruber_darker_group,
 		callback = function()
-			-- Small delay to allow other plugins to set background
+			-- Longer delay to allow other plugins to set background
 			vim.defer_fn(function()
 				if vim.g.colors_name == "gruber-darker" then
 					local config = require("gruber-darker.config")
@@ -80,7 +80,7 @@ local function create_autocmds()
 					local highlights = require("gruber-darker.highlights")
 					highlights.setup()
 				end
-			end, 100)
+			end, 500)
 		end,
 	})
 end
