@@ -78,6 +78,20 @@ function M.load()
 	highlights.setup()
 
 	create_autocmds()
+	
+	-- Schedule a check after other plugins have loaded to fix initial variant
+	vim.defer_fn(function()
+		if vim.g.colors_name == "gruber-darker" then
+			local current_opts = require("gruber-darker.config").get_opts()
+			print("Delayed check: variant =", current_opts.variant, "background =", vim.o.background)
+			if current_opts.variant ~= (vim.o.background == "light" and "light" or "dark") then
+				print("Background changed after load, reloading theme")
+				local palette = require("gruber-darker.palette")
+				palette.reload()
+				highlights.setup()
+			end
+		end
+	end, 500)
 end
 
 ---Change colorscheme to GruberDarker
