@@ -9,8 +9,13 @@
 ---|"tabline"
 ---|"visual"
 
+---@alias VariantType
+---|"dark"
+---|"light"
+
 ---@class GruberDarkerOpts
 ---@field bold boolean
+---@field variant VariantType
 ---@field invert table<InvertType, boolean>
 ---@field italic table<ItalicType, boolean>
 ---@field undercurl boolean
@@ -19,6 +24,7 @@
 ---@type GruberDarkerOpts
 local DEFAULTS = {
 	bold = true,
+	variant = "dark",
 	invert = {
 		signs = false,
 		tabline = false,
@@ -56,10 +62,7 @@ end
 ---Set GruberDarker colorscheme options
 ---@param opts? GruberDarkerOpts
 function ConfigMgr.setup(opts)
-	if instance ~= nil then
-		return
-	end
-
+	-- Allow reconfiguration by resetting instance
 	instance = setmetatable({
 		resolved_opts = vim.tbl_deep_extend("force", DEFAULTS, opts or {}),
 	}, ConfigMgr)

@@ -67,6 +67,9 @@ function M.colorscheme() end
 ---@param opts? GruberDarkerOpts
 function M.setup(opts)
 	config.setup(opts)
+	-- Reload palette when variant changes
+	local palette = require("gruber-darker.palette")
+	palette.reload()
 end
 
 return M

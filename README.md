@@ -41,6 +41,7 @@ vim.cmd.colorscheme("gruber-darker")
 ```lua
 {
   bold = true,
+  variant = "dark", -- "dark" or "light"
   invert = {
     signs = false,
     tabline = false,
@@ -70,11 +71,23 @@ For example, with [Lazy](https://github.com/folke/lazy.nvim.git)...
   "blazkowolf/gruber-darker.nvim",
   opts = {
     bold = false,
+    variant = "light", -- Use light mode
     italic = {
       strings = false,
     },
   },
 }
+```
+
+### Light Mode
+
+To use the light variant:
+
+```lua
+require("gruber-darker").setup({
+  variant = "light"
+})
+vim.cmd.colorscheme("gruber-darker")
 ```
 
 ## Credits
