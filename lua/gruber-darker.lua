@@ -42,6 +42,24 @@ local function create_autocmds()
 			end
 		end,
 	})
+
+	-- Auto-reload theme when background changes
+	vim.api.nvim_create_autocmd("OptionSet", {
+		group = gruber_darker_group,
+		pattern = "background",
+		callback = function()
+			if vim.g.colors_name == "gruber-darker" then
+				-- Reload config to pick up new background setting
+				local config = require("gruber-darker.config")
+				config.setup(config.get_opts())
+				-- Reload palette and highlights
+				local palette = require("gruber-darker.palette")
+				palette.reload()
+				local highlights = require("gruber-darker.highlights")
+				highlights.setup()
+			end
+		end,
+	})
 end
 
 ---Clear current highlights and set Neovim global `colors_name`

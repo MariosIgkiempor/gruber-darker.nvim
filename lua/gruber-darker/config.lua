@@ -62,9 +62,16 @@ end
 ---Set GruberDarker colorscheme options
 ---@param opts? GruberDarkerOpts
 function ConfigMgr.setup(opts)
+	local final_opts = vim.tbl_deep_extend("force", DEFAULTS, opts or {})
+	
+	-- Auto-detect variant based on vim.o.background if not explicitly set
+	if not opts or not opts.variant then
+		final_opts.variant = vim.o.background == "light" and "light" or "dark"
+	end
+	
 	-- Allow reconfiguration by resetting instance
 	instance = setmetatable({
-		resolved_opts = vim.tbl_deep_extend("force", DEFAULTS, opts or {}),
+		resolved_opts = final_opts,
 	}, ConfigMgr)
 end
 
