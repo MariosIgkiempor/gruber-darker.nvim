@@ -1,7 +1,4 @@
 local Highlight = require("gruber-darker.highlight")
-local c = require("gruber-darker.palette")
-local opts = require("gruber-darker.config").get_opts()
-local gruber_hl = require("gruber-darker.highlights.colorscheme").highlights
 
 ---@type HighlightsProvider
 local M = {
@@ -10,10 +7,22 @@ local M = {
 
 ---Set standard Vim highlights
 function M.setup()
+	-- Get fresh references each time
+	local c = require("gruber-darker.palette")
+	local opts = require("gruber-darker.config").get_opts()
+	local gruber_hl = require("gruber-darker.highlights.colorscheme").highlights
+	
+	-- Recreate all highlights with current palette
+	M.highlights = {}
+	M.create_highlights(c, opts, gruber_hl)
+	
 	for _, value in pairs(M.highlights) do
 		value:setup()
 	end
 end
+
+---Create highlight definitions
+function M.create_highlights(c, opts, gruber_hl)
 
 ---Any comment
 M.highlights.comment = Highlight.new("Comment", { fg = c.brown, italic = opts.italic.comments })
@@ -256,5 +265,7 @@ M.highlights.md_italic = Highlight.new("markdownItalic", { fg = c.wisteria, ital
 M.highlights.md_bold = Highlight.new("markdownBold", { link = gruber_hl.yellow_bold })
 M.highlights.md_code_delim = Highlight.new("markdownCodeDelimiter", { fg = c.brown, italic = true })
 M.highlights.md_error = Highlight.new("markdownError", { fg = c.fg, bg = c["bg+1"] })
+
+end
 
 return M

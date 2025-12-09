@@ -1,6 +1,4 @@
 local Highlight = require("gruber-darker.highlight")
-local c = require("gruber-darker.palette")
-local opts = require("gruber-darker.config").get_opts()
 
 ---@type HighlightsProvider
 local M = {
@@ -9,10 +7,23 @@ local M = {
 
 ---Set GruberDarker-specific highlights
 function M.setup()
+	-- Get fresh references to palette and config each time
+	local c = require("gruber-darker.palette")
+	local opts = require("gruber-darker.config").get_opts()
+	
+	-- Recreate all highlights with current palette
+	M.highlights = {}
+	M.create_highlights(c, opts)
+	
 	for _, value in pairs(M.highlights) do
 		value:setup()
 	end
 end
+
+---Create highlight definitions
+---@param c any palette
+---@param opts any config options
+function M.create_highlights(c, opts)
 
 -- Highlights inspired by
 -- https://github.com/ellisonleao/gruvbox.nvim/blob/main/lua/gruvbox/groups.lua#L43
@@ -81,5 +92,7 @@ M.highlights.niagara_underline =
 	Highlight.new("GruberDarkerNiagaraUnderline", { sp = c.niagara, undercurl = opts.undercurl })
 M.highlights.wisteria_underline =
 	Highlight.new("GruberDarkerWisteriaUnderline", { sp = c.wisteria, undercurl = opts.undercurl })
+
+end
 
 return M

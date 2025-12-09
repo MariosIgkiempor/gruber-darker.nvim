@@ -1,7 +1,3 @@
-local c = require("gruber-darker.palette")
-local opts = require("gruber-darker.config").get_opts()
-local vim_hl = require("gruber-darker.highlights.vim").highlights
-local gruber_hl = require("gruber-darker.highlights.colorscheme").highlights
 local Highlight = require("gruber-darker.highlight")
 
 ---@type HighlightsProvider
@@ -11,10 +7,23 @@ local M = {
 
 ---Set `nvim-treesitter` plugin highlights
 function M.setup()
+	-- Get fresh references each time
+	local c = require("gruber-darker.palette")
+	local opts = require("gruber-darker.config").get_opts()
+	local vim_hl = require("gruber-darker.highlights.vim").highlights
+	local gruber_hl = require("gruber-darker.highlights.colorscheme").highlights
+	
+	-- Recreate all highlights
+	M.highlights = {}
+	M.create_highlights(c, opts, vim_hl, gruber_hl)
+	
 	for _, value in pairs(M.highlights) do
 		value:setup()
 	end
 end
+
+---Create highlight definitions
+function M.create_highlights(c, opts, vim_hl, gruber_hl)
 
 -- Neovim tree-sitter highlights sourced from
 -- https://github.com/nvim-treesitter/nvim-treesitter/blob/master/CONTRIBUTING.md#highlights
@@ -213,5 +222,7 @@ M.highlights.tag = Highlight.new("@tag", { link = vim_hl.tag })
 M.highlights.tag_attribute = Highlight.new("@tag.attribute", { link = M.highlights.field })
 ---XML tag delimiters
 M.highlights.tag_delimiter = Highlight.new("@tag.delimiter", { link = vim_hl.delimiter })
+
+end
 
 return M

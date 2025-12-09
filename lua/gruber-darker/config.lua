@@ -59,7 +59,6 @@ function ConfigMgr.get_opts()
 		if instance.auto_detect_variant then
 			opts.variant = vim.o.background == "light" and "light" or "dark"
 		end
-		print("Config get_opts (with instance): variant =", opts.variant, "auto_detect =", instance.auto_detect_variant, "vim.o.background =", vim.o.background)
 		return opts
 	end
 
@@ -68,7 +67,6 @@ function ConfigMgr.get_opts()
 	if opts.variant == nil then
 		opts.variant = vim.o.background == "light" and "light" or "dark"
 	end
-	print("Config get_opts (no instance): variant =", opts.variant, "vim.o.background =", vim.o.background)
 	return opts
 end
 

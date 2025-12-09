@@ -60,12 +60,9 @@ local light_palette = {
 -- Return the appropriate palette based on variant
 local function get_palette()
 	local opts = config.get_opts()
-	print("Palette get_palette: variant =", opts.variant, "vim.o.background =", vim.o.background)
 	if opts.variant == "light" then
-		print("Using light_palette")
 		return light_palette
 	else
-		print("Using dark_palette")
 		return dark_palette
 	end
 end
