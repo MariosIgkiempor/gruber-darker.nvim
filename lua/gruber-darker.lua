@@ -51,7 +51,8 @@ local function create_autocmds()
 			if vim.g.colors_name == "gruber-darker" then
 				-- Reload config to pick up new background setting
 				local config = require("gruber-darker.config")
-				config.setup({})
+				-- Force reconfiguration with auto-detected variant
+				config.setup({ variant = vim.o.background == "light" and "light" or "dark" })
 				-- Reload palette and highlights
 				local palette = require("gruber-darker.palette")
 				palette.reload()
