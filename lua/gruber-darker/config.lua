@@ -53,10 +53,20 @@ local instance = nil
 ---@nodiscard
 function ConfigMgr.get_opts()
 	if instance ~= nil then
-		return instance.resolved_opts
+		local opts = vim.deepcopy(instance.resolved_opts)
+		-- Always auto-detect variant if it was set to nil
+		if opts.variant == nil then
+			opts.variant = vim.o.background == "light" and "light" or "dark"
+		end
+		return opts
 	end
 
-	return DEFAULTS
+	local opts = vim.deepcopy(DEFAULTS)
+	-- Auto-detect variant if it's nil
+	if opts.variant == nil then
+		opts.variant = vim.o.background == "light" and "light" or "dark"
+	end
+	return opts
 end
 
 ---Set GruberDarker colorscheme options

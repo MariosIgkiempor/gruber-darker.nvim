@@ -49,40 +49,15 @@ local function create_autocmds()
 		pattern = "background",
 		callback = function()
 			if vim.g.colors_name == "gruber-darker" then
-				-- Reload config to pick up new background setting
-				local config = require("gruber-darker.config")
-				-- Force reconfiguration with auto-detected variant
-				local new_variant = vim.o.background == "light" and "light" or "dark"
-				config.setup({ variant = new_variant })
-				-- Reload palette and highlights
+				-- Simply reload the highlights - config will auto-detect variant
 				local palette = require("gruber-darker.palette")
 				palette.reload()
 				local highlights = require("gruber-darker.highlights")
 				highlights.setup()
-				-- Force a complete redraw
-				vim.cmd.redraw()
 			end
 		end,
 	})
 	
-	-- Additional autocmd to handle delayed background changes (for auto-dark-mode.nvim)
-	vim.api.nvim_create_autocmd("VimEnter", {
-		group = gruber_darker_group,
-		callback = function()
-			-- Longer delay to allow other plugins to set background
-			vim.defer_fn(function()
-				if vim.g.colors_name == "gruber-darker" then
-					local config = require("gruber-darker.config")
-					local new_variant = vim.o.background == "light" and "light" or "dark"
-					config.setup({ variant = new_variant })
-					local palette = require("gruber-darker.palette")
-					palette.reload()
-					local highlights = require("gruber-darker.highlights")
-					highlights.setup()
-				end
-			end, 500)
-		end,
-	})
 end
 
 ---Clear current highlights and set Neovim global `colors_name`
