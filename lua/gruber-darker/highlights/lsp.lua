@@ -32,6 +32,9 @@ M.highlights.diagnostic_underline_hint =
 
 M.highlights.diagnostic_unnecessary = Highlight.new("DiagnosticUnnecessary", { link = M.highlights.diagnostic_underline_hint })
 
+-- Inlay hints
+M.highlights.lsp_inlay_hint = Highlight.new("LspInlayHint", { link = gruber_hl.red })
+
 ---LspSaga floating windows
 M.highlights.saga_normal = Highlight.new("SagaNormal", { link = vim_hl.normal_float })
 M.highlights.saga_border = Highlight.new("SagaBorder", { link = vim_hl.float_border })
