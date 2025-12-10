@@ -149,7 +149,7 @@ M.highlights.spell_rare = Highlight.new("SpellRare", { undercurl = opts.undercur
 -- Statusline
 
 ---Status line of current window
-M.highlights.status_line = Highlight.new("StatusLine", { fg = c.white, bg = c["bg+1"] })
+M.highlights.status_line = Highlight.new("StatusLine", { fg = c.fg, bg = c["bg+1"] })
 ---Status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
 M.highlights.status_line_non_current = Highlight.new("StatusLineNC", { fg = c.quartz, bg = c["bg+1"] })
 
@@ -171,7 +171,7 @@ M.highlights.visual_nos = Highlight.new("VisualNOS", { link = gruber_hl.red })
 ---Warning messages
 M.highlights.warning_msg = Highlight.new("WarningMsg", { link = gruber_hl.red })
 ---"nbsp", "space", "tab" and "trail" in 'listchars'
-M.highlights.whitespace = Highlight.new("Whitespace", { fg = c["bg+4"], bg = c.none })
+M.highlights.whitespace = Highlight.new("Whitespace", { fg = c["bg+2"], bg = c.none })
 ---Current match in 'wildmenu' completion
 M.highlights.wild_menu = Highlight.new("WildMenu", { fg = c.black, bg = c.yellow })
 ---These groups are not listed as vim groups,
