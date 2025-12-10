@@ -16,6 +16,7 @@ end
 M.highlights.diagnostic_error = Highlight.new("DiagnosticError", { link = gruber_hl.red_bold })
 M.highlights.diagnostic_sign_error = Highlight.new("DiagnosticSignError", { link = gruber_hl.red_sign })
 M.highlights.diagnostic_underline_error = Highlight.new("DiagnosticUnderlineError", { link = gruber_hl.red_underline })
+M.highlights.diagnostic_virtual_text_error = Highlight.new("DiagnosticVirtualTextError", { link = gruber_hl.red })
 
 M.highlights.diagnostic_warn = Highlight.new("DiagnosticWarn", { link = gruber_hl.yellow_bold })
 M.highlights.diagnostic_sign_warn = Highlight.new("DiagnosticSignWarn", { link = gruber_hl.yellow_sign })
