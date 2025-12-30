@@ -1,10 +1,10 @@
-local nord = require("nord.colors")
+local nord = require("gruber-darker.colors")
 
 local theme = {}
 
-local italic = vim.g.nord_italic == false and nord.none or "italic"
+local italic = vim.g.gruber_darker_italic == false and nord.none or "italic"
 local italic_undercurl = vim.g.nord_italic == false and "undercurl" or "italic,undercurl"
-local bold = vim.g.nord_bold == false and nord.none or "bold"
+local bold = vim.g.gruber_darker_bold == false and nord.none or "bold"
 local reverse_bold = vim.g.nord_bold == false and "reverse" or "reverse,bold"
 local bold_underline = vim.g.nord_bold == false and "underline" or "bold,underline"
 local bold_italic;
@@ -189,7 +189,7 @@ theme.loadEditor = function()
 	-- Options:
 
 	--Set transparent background
-	if vim.g.nord_disable_background then
+	if vim.g.gruber_darker_disable_background then
 		editor.Normal = { fg = nord.nord4_gui, bg = nord.none } -- normal text and background color
 		editor.SignColumn = { fg = nord.nord4_gui, bg = nord.none }
 	else
@@ -198,13 +198,13 @@ theme.loadEditor = function()
 	end
 
 	-- Remove window split borders
-	if vim.g.nord_borders then
+	if vim.g.gruber_darker_borders then
 		editor.VertSplit = { fg = nord.nord2_gui }
 	else
 		editor.VertSplit = { fg = nord.nord0_gui }
 	end
 
-	if vim.g.nord_uniform_diff_background then
+	if vim.g.gruber_darker_uniform_diff_background then
 		editor.DiffAdd = { fg = nord.nord14_gui, bg = nord.nord1_gui } -- diff mode: Added line
 		editor.DiffChange = { fg = nord.nord13_gui, bg = nord.nord1_gui } -- diff mode: Changed line
 		editor.DiffDelete = { fg = nord.nord11_gui, bg = nord.nord1_gui } -- diff mode: Deleted line
@@ -864,13 +864,13 @@ theme.loadPlugins = function()
 	-- Options:
 
 	-- Disable nvim-tree background
-	if vim.g.nord_disable_background then
+	if vim.g.gruber_darker_disable_background then
 		plugins.NvimTreeNormal = { fg = nord.nord4_gui, bg = nord.none }
 	else
 		plugins.NvimTreeNormal = { fg = nord.nord4_gui, bg = nord.sidebar }
 	end
 
-	if vim.g.nord_enable_sidebar_background then
+	if vim.g.gruber_darker_enable_sidebar_background then
 		plugins.NvimTreeNormal = { fg = nord.nord4_gui, bg = nord.sidebar }
 	else
 		plugins.NvimTreeNormal = { fg = nord.nord4_gui, bg = nord.none }

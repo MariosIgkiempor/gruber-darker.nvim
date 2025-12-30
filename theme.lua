@@ -1,16 +1,16 @@
-local nord = require("nord.colors")
+local nord = require("gruber-darker.colors")
 
 local theme = {}
 
-local italic = vim.g.nord_italic == false and nord.none or "italic"
-local italic_undercurl = vim.g.nord_italic == false and "undercurl" or "italic,undercurl"
-local bold = vim.g.nord_bold == false and nord.none or "bold"
-local reverse_bold = vim.g.nord_bold == false and "reverse" or "reverse,bold"
-local bold_underline = vim.g.nord_bold == false and "underline" or "bold,underline"
+local italic = vim.g.gruber_darker_italic == false and nord.none or "italic"
+local italic_undercurl = vim.g.gruber_darker_italic == false and "undercurl" or "italic,undercurl"
+local bold = vim.g.gruber_darker_bold == false and nord.none or "bold"
+local reverse_bold = vim.g.gruber_darker_bold == false and "reverse" or "reverse,bold"
+local bold_underline = vim.g.gruber_darker_bold == false and "underline" or "bold,underline"
 local bold_italic;
-if vim.g.nord_bold == false then
-	bold_italic = vim.g.nord_italic == false and nord.none or "italic"
-elseif vim.g.nord_italic == false then
+if vim.g.gruber_darker_bold == false then
+	bold_italic = vim.g.gruber_darker_italic == false and nord.none or "italic"
+elseif vim.g.gruber_darker_italic == false then
 	bold_italic = "bold"
 else
 	bold_italic = "bold,italic"
@@ -189,7 +189,7 @@ theme.loadEditor = function()
 	-- Options:
 
 	--Set transparent background
-	if vim.g.nord_disable_background then
+	if vim.g.gruber_darker_disable_background then
 		editor.Normal = { fg = nord.nord4_gui, bg = nord.none } -- normal text and background color
 		editor.SignColumn = { fg = nord.nord4_gui, bg = nord.none }
 	else
@@ -198,13 +198,13 @@ theme.loadEditor = function()
 	end
 
 	-- Remove window split borders
-	if vim.g.nord_borders then
+	if vim.g.gruber_darker_borders then
 		editor.VertSplit = { fg = nord.nord2_gui }
 	else
 		editor.VertSplit = { fg = nord.nord0_gui }
 	end
 
-	if vim.g.nord_uniform_diff_background then
+	if vim.g.gruber_darker_uniform_diff_background then
 		editor.DiffAdd = { fg = nord.nord14_gui, bg = nord.nord1_gui } -- diff mode: Added line
 		editor.DiffChange = { fg = nord.nord13_gui, bg = nord.nord1_gui } -- diff mode: Changed line
 		editor.DiffDelete = { fg = nord.nord11_gui, bg = nord.nord1_gui } -- diff mode: Deleted line
@@ -783,23 +783,23 @@ theme.loadPlugins = function()
 		AerialEnumIcon = { fg = nord.nord9_gui },
 		AerialEnumMemberIcon = { fg = nord.nord4_gui },
 		AerialEventIcon = { fg = nord.nord9_gui },
-		AerialFieldIcon = vim.g.nord_italic and { fg = nord.nord4_gui, style = italic } or { fg = nord.nord4_gui },
+		AerialFieldIcon = vim.g.gruber_darker_italic and { fg = nord.nord4_gui, style = italic } or { fg = nord.nord4_gui },
 		AerialFileIcon = { fg = nord.nord14_gui },
-		AerialFunctionIcon = vim.g.nord_italic and { fg = nord.nord8_gui, style = italic } or { fg = nord.nord8_gui },
+		AerialFunctionIcon = vim.g.gruber_darker_italic and { fg = nord.nord8_gui, style = italic } or { fg = nord.nord8_gui },
 		AerialInterfaceIcon = { fg = nord.nord9_gui },
 		AerialKeyIcon = { fg = nord.nord9_gui },
-		AerialMethodIcon = vim.g.nord_italic and { fg = nord.nord7_gui, style = italic } or { fg = nord.nord7_gui },
-		AerialModuleIcon = vim.g.nord_italic and { fg = nord.nord4_gui, style = italic } or { fg = nord.nord4_gui },
-		AerialNamespaceIcon = vim.g.nord_italic and { fg = nord.nord4_gui, style = italic }
+		AerialMethodIcon = vim.g.gruber_darker_italic and { fg = nord.nord7_gui, style = italic } or { fg = nord.nord7_gui },
+		AerialModuleIcon = vim.g.gruber_darker_italic and { fg = nord.nord4_gui, style = italic } or { fg = nord.nord4_gui },
+		AerialNamespaceIcon = vim.g.gruber_darker_italic and { fg = nord.nord4_gui, style = italic }
 			or { fg = nord.nord4_gui },
 		AerialNullIcon = { fg = nord.nord9_gui },
 		AerialNumberIcon = { fg = nord.nord15_gui },
 		AerialObjectIcon = { fg = nord.nord9_gui },
 		AerialOperatorIcon = { fg = nord.nord9_gui },
-		AerialPackageIcon = vim.g.nord_italic and { fg = nord.nord4_gui, style = italic } or { fg = nord.nord4_gui },
-		AerialPropertyIcon = vim.g.nord_italic and { fg = nord.nord4_gui, style = italic }
+		AerialPackageIcon = vim.g.gruber_darker_italic and { fg = nord.nord4_gui, style = italic } or { fg = nord.nord4_gui },
+		AerialPropertyIcon = vim.g.gruber_darker_italic and { fg = nord.nord4_gui, style = italic }
 			or { fg = nord.nord10_gui },
-		AerialStringIcon = vim.g.nord_italic and { fg = nord.nord14_gui, style = italic } or { fg = nord.nord14_gui },
+		AerialStringIcon = vim.g.gruber_darker_italic and { fg = nord.nord14_gui, style = italic } or { fg = nord.nord14_gui },
 		AerialStructIcon = { fg = nord.nord9_gui },
 		AerialTypeParameterIcon = { fg = nord.nord10_gui },
 		AerialVariableIcon = { fg = nord.nord4_gui, style = bold },
@@ -812,21 +812,21 @@ theme.loadPlugins = function()
 		AerialEnum = { fg = nord.nord9_gui },
 		AerialEnumMember = { fg = nord.nord4_gui },
 		AerialEvent = { fg = nord.nord9_gui },
-		AerialField = vim.g.nord_italic and { fg = nord.nord4_gui, style = italic } or { fg = nord.nord4_gui },
+		AerialField = vim.g.gruber_darker_italic and { fg = nord.nord4_gui, style = italic } or { fg = nord.nord4_gui },
 		AerialFile = { fg = nord.nord14_gui },
-		AerialFunction = vim.g.nord_italic and { fg = nord.nord8_gui, style = italic } or { fg = nord.nord8_gui },
+		AerialFunction = vim.g.gruber_darker_italic and { fg = nord.nord8_gui, style = italic } or { fg = nord.nord8_gui },
 		AerialInterface = { fg = nord.nord9_gui },
 		AerialKey = { fg = nord.nord9_gui },
-		AerialMethod = vim.g.nord_italic and { fg = nord.nord7_gui, style = italic } or { fg = nord.nord7_gui },
-		AerialModule = vim.g.nord_italic and { fg = nord.nord4_gui, style = italic } or { fg = nord.nord4_gui },
-		AerialNamespace = vim.g.nord_italic and { fg = nord.nord4_gui, style = italic } or { fg = nord.nord4_gui },
+		AerialMethod = vim.g.gruber_darker_italic and { fg = nord.nord7_gui, style = italic } or { fg = nord.nord7_gui },
+		AerialModule = vim.g.gruber_darker_italic and { fg = nord.nord4_gui, style = italic } or { fg = nord.nord4_gui },
+		AerialNamespace = vim.g.gruber_darker_italic and { fg = nord.nord4_gui, style = italic } or { fg = nord.nord4_gui },
 		AerialNull = { fg = nord.nord9_gui },
 		AerialNumber = { fg = nord.nord15_gui },
 		AerialObject = { fg = nord.nord9_gui },
 		AerialOperator = { fg = nord.nord9_gui },
-		AerialPackage = vim.g.nord_italic and { fg = nord.nord4_gui, style = italic } or { fg = nord.nord4_gui },
-		AerialProperty = vim.g.nord_italic and { fg = nord.nord4_gui, style = italic } or { fg = nord.nord10_gui },
-		AerialString = vim.g.nord_italic and { fg = nord.nord14_gui, style = italic } or { fg = nord.nord14_gui },
+		AerialPackage = vim.g.gruber_darker_italic and { fg = nord.nord4_gui, style = italic } or { fg = nord.nord4_gui },
+		AerialProperty = vim.g.gruber_darker_italic and { fg = nord.nord4_gui, style = italic } or { fg = nord.nord10_gui },
+		AerialString = vim.g.gruber_darker_italic and { fg = nord.nord14_gui, style = italic } or { fg = nord.nord14_gui },
 		AerialStruct = { fg = nord.nord9_gui },
 		AerialTypeParameter = { fg = nord.nord10_gui },
 		AerialVariable = { fg = nord.nord4_gui, style = bold },
@@ -864,13 +864,13 @@ theme.loadPlugins = function()
 	-- Options:
 
 	-- Disable nvim-tree background
-	if vim.g.nord_disable_background then
+	if vim.g.gruber_darker_disable_background then
 		plugins.NvimTreeNormal = { fg = nord.nord4_gui, bg = nord.none }
 	else
 		plugins.NvimTreeNormal = { fg = nord.nord4_gui, bg = nord.sidebar }
 	end
 
-	if vim.g.nord_enable_sidebar_background then
+	if vim.g.gruber_darker_enable_sidebar_background then
 		plugins.NvimTreeNormal = { fg = nord.nord4_gui, bg = nord.sidebar }
 	else
 		plugins.NvimTreeNormal = { fg = nord.nord4_gui, bg = nord.none }

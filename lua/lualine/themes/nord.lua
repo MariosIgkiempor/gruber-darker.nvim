@@ -1,4 +1,4 @@
-local colors = require("nord.colors")
+local colors = require("gruber-darker.colors")
 
 local nord = {}
 

@@ -1,5 +1,5 @@
 local util = {}
-local nord = require("nord.theme")
+local nord = require("gruber-darker.theme")
 
 -- Go trough the table and highlight the group with the color values
 util.highlight = function(group, color)
@@ -18,17 +18,17 @@ end
 
 -- Only define nord if it's the active colorscheme
 function util.onColorScheme()
-	if vim.g.colors_name ~= "nord" then
-		vim.cmd([[autocmd! nord]])
-		vim.cmd([[augroup! nord]])
+	if vim.g.colors_name ~= "gruber-darker" then
+		vim.cmd([[autocmd! gruber-darker]])
+		vim.cmd([[augroup! gruber-darker]])
 	end
 end
 
 -- Change the background for the terminal, packer and qf windows
 util.contrast = function()
-	vim.cmd([[augroup nord]])
+	vim.cmd([[augroup gruber-darker]])
 	vim.cmd([[  autocmd!]])
-	vim.cmd([[  autocmd ColorScheme * lua require("nord.util").onColorScheme()]])
+	vim.cmd([[  autocmd ColorScheme * lua require("gruber-darker.util").onColorScheme()]])
 	vim.cmd([[  autocmd TermOpen * setlocal winhighlight=Normal:NormalFloat,SignColumn:NormalFloat]])
 	vim.cmd([[  autocmd FileType packer setlocal winhighlight=Normal:NormalFloat,SignColumn:NormalFloat]])
 	vim.cmd([[  autocmd FileType qf setlocal winhighlight=Normal:NormalFloat,SignColumn:NormalFloat]])
@@ -49,7 +49,7 @@ function util.load()
 	end
 	-- vim.o.background = "dark"
 	vim.o.termguicolors = true
-	vim.g.colors_name = "nord"
+	vim.g.colors_name = "gruber-darker"
 
 	-- load the most importaint parts of the theme
 	local editor = nord.loadEditor()
@@ -82,7 +82,7 @@ function util.load()
 	util.loadColorSet(lsp)
 
 	-- if contrast is enabled, apply it to sidebars and floating windows
-	if vim.g.nord_contrast == true then
+	if vim.g.gruber_darker_contrast == true then
 		util.contrast()
 	end
 end

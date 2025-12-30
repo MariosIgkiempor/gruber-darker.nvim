@@ -1,4 +1,4 @@
-local named_colors = require("nord.named_colors")
+local named_colors = require("gruber-darker.named_colors")
 
 local dark_colors = {
 	nord0_gui = named_colors.black, -- nord0 in palette
@@ -47,7 +47,7 @@ local light_colors = {
 local nord = (vim.o.background == "dark") and dark_colors or light_colors
 
 -- Enable contrast sidebars, floating windows and popup menus
-if vim.g.nord_contrast then
+if vim.g.gruber_darker_contrast then
 	nord.sidebar = nord.nord1_gui
 	nord.float = nord.nord1_gui
 else
@@ -55,7 +55,7 @@ else
 	nord.float = nord.nord0_gui
 end
 
-if vim.g.nord_cursorline_transparent then
+if vim.g.gruber_darker_cursorline_transparent then
 	nord.cursorlinefg = nord.nord0_gui
 else
 	nord.cursorlinefg = nord.nord1_gui
