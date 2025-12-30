@@ -1,22 +1,22 @@
-local nord = {
-	-- Gruber Darker palette mapped to Nord slots
-	black = "#181818", -- bg (gruber dark background)
-	dark_gray = "#282828", -- bg+1 
-	gray = "#453d41", -- bg+2
-	light_gray = "#484848", -- bg+3
-	light_gray_bright = "#565f73", -- niagara-1
-	darkest_white = "#e4e4e4", -- fg (gruber main foreground)
-	darker_white = "#f4f4ff", -- fg+1 (bright foreground)
-	white = "#ffffff", -- white
-	teal = "#73d936", -- green
-	off_blue = "#9e95c7", -- wisteria (purple-blue)
-	glacier = "#f4f4ff", -- niagara (bright blue-white)
-	blue = "#565f73", -- niagara-1 (blue-gray)
-	red = "#f43841", -- red
-	orange = "#cc8c3c", -- brown
-	yellow = "#ffdd33", -- yellow
-	green = "#73d936", -- green
-	purple = "#9e95c7", -- wisteria
+local gruber_darker = {
+	-- Original Gruber Darker palette with better contrast
+	black = "#181818", -- bg (main background)
+	dark_gray = "#282828", -- bg+1 (slightly lighter background)
+	gray = "#484848", -- bg+2 (medium gray for UI elements)
+	light_gray = "#52494e", -- bg+3 (comment gray)
+	light_gray_bright = "#565f73", -- niagara-1 (muted blue-gray)
+	darkest_white = "#e4e4ef", -- fg (main foreground text)
+	darker_white = "#f4f4ff", -- fg+1 (bright text)
+	white = "#ffffff", -- white (brightest text)
+	teal = "#95a99b", -- quartz (muted green-gray)
+	off_blue = "#96a6c8", -- niagara-2 (soft blue)
+	glacier = "#88c9f0", -- niagara (bright blue)
+	blue = "#565f73", -- niagara-1 (dark blue-gray)  
+	red = "#f43841", -- red (error/warning)
+	orange = "#cc8c3c", -- brown/orange (constants)
+	yellow = "#ffdd33", -- yellow (strings/warnings)
+	green = "#73c936", -- green (success/strings)
+	purple = "#95a99b", -- quartz (keywords/types)
 	none = "NONE",
 }
-return nord
+return gruber_darker
